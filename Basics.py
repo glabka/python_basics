@@ -151,18 +151,36 @@ print(((4 < 5) or True) and (4 > 5))
 x = 1
 x += 5
 
+print("\n********************************************\noperator overloading\n********************************************")
+class A:
+    def __init__(self, a):
+        self.a = a
+
+    def __gt__(self, other):
+        if (self.a > other.a):
+            return True
+        else:
+            return False
+
+    def __add__(self, other):
+        return self.a + other.a
+
+a1 = A(1)
+a2 = A(2)
+print(f"is A(1) greater then A(2): {a1 > a2}")
+print(f"A(1) + A(2): {a1 + a2}")
+# if statement
+print("\n********************************************\nif statement\n********************************************")
 name1 = "Smith, John";
 name2 = "Smith, Jane";
 
 if name1 < name2 :
-   print("Name1 comes first.")
+    print("Name1 comes first.")
 elif name1 > name2 :
-   print("Name2 comes first.")
+    print("Name2 comes first.")
 else :
-   print("The names are the same.")
-   
-# if statement
-print("\n********************************************\nif statement\n********************************************")
+    print("The names are the same.")
+
 if 4 < 5:
     print('1')
 elif 4 > 3:
@@ -248,6 +266,7 @@ class Dog:
     def __str__(self):
         return "Dog:\nName: " + self._name + "\nAge: " + str(self._age)
 
+    @staticmethod
     def random(): # class method
         return 7
 d1 = Dog("Scruffy", 5)
