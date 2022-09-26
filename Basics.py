@@ -59,7 +59,9 @@ list4 = [11, 4, 7]
 
 list5 = [ 0 ] * 10 # creating list of ten zero elements
 print(list5)
-     
+
+multi_dim_list = [[0, 1, 2], [2, 3]]
+print(multi_dim_list[0][0] == multi_dim_list[0, 0]) # efficiently the same but first option is more inefficient as a new temporary array is created.
 # Sequences: (immutable) tuples
 print("\n********************************************\nSequences: tuples\n********************************************")
 x = 1, 2, 3, 4
