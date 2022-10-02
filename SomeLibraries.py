@@ -1,6 +1,11 @@
 import numpy as np
 import pandas as pd
 import copy
+import scipy.stats as stats
+import sympy as sym
+import sympy.plotting.plot as symplot
+import matplotlib.pyplot as plt # for symplot
+from IPython.display import display # for latex-like display of sym's expressions
 
 # -------------------- copy --------------------
 list = [1, 2, 3]
@@ -57,6 +62,15 @@ print(M)
 print(C)
 print(B)
 
+# Variance
+n = [1, 2, 3, 4, 5, 10, 25]
+print(f"biased variance = {np.var(n)}")
+print(f"unbiased variance = {np.var(n, ddof=1)}") # degrees of freedom -> results in devision by (n - 1) in the formula
+
+# Taking random subset
+n = [1, 2, 3, -2, 0, 10, 59, -40]
+print(np.random.choice(n, size=5, replace=False)) # replace -> sample can be taken more times
+
 # -------------------- pandas --------------------
 # for tables
 
@@ -79,3 +93,41 @@ print("head")
 print(df.head())
 print("mean")
 print(df.mean())
+
+# -------------------- scipy.stats --------------------
+n1 = 30 # samples in dataset 1
+n2 = 40 # samples in dataset 2
+mu1 = 1 # population mean in dataset 1
+mu2 = 1.2 # population mean in dataset 2
+
+# generating data
+data1 = mu1 + np.random.randn(n1)
+data2 = mu2 + np.random.randn(n2)
+
+t, p = stats.ttest_ind(data1, data2) # ttest independance -> returns t and p values. Tests hypothesis that the two datasets are from the same distribution
+print(t) # t value
+# p value - we can compare it with our statistical significance threshold. If it's smaller than that, it says something
+# along the lines of the probability of the distributions being the same is smaller than threshold -> thus proving that
+# they are actually different (for example that one model performs significantly better than the other).
+print(p)
+
+# -------------------- sympy (sym), sympy.plotting.plot (symplot) and IPython.display --------------------
+# creating symbolic variable
+x = sym.symbols('x')
+
+# creating a function
+fx = 2 * x**2
+
+# computing derivative
+df = sym.diff(fx, x)
+
+print(fx)
+print(df)
+display(fx) # should work in PyCharm for instance
+display(df)
+
+symplot(fx, (x, -4, 4), title='The function')
+plt.show()
+
+symplot(df, (x, -4, 4), title='The functions derivative')
+plt.show()
