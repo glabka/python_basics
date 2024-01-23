@@ -131,3 +131,5 @@ plt.show()
 
 symplot(df, (x, -4, 4), title='The functions derivative')
 plt.show()
+
+lamb = sym.lambdify(x, df) # returns a function that can be used to compute the value of fx for a given x
