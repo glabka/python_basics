@@ -24,6 +24,8 @@ print("length:", len(s))
 print("subsrting1", s[:2])
 print("subsrting2", s[1:3])
 print("substring3", s[-3:]) # last three characters
+print("substring4", s[:-1]) # all but last character
+print("substring5", s[::2]) # every second character
 print("contains:", "23" in s) # does s contains "23"
 print("last char:", s[-1])
 
